@@ -8,9 +8,9 @@ app = Flask(__name__)
 
 
 @app.get('/')
-def info():
+def info(datos):
      
-     return render_template('index.html')
+     return render_template('index.html',base = datos)
  
  
 @app.post('/guardar')
@@ -18,22 +18,25 @@ def createBase():
     data = request.form
       
     if (data.getlist("check")):
-        bases.creteBase(
+        
+        datos=bases.getAllBases(
+        host=data["host"],
+        user=data["usuario"],
+        contra=data["contrasenia"],
+        pueto=data["puerto"] 
+                    )
+        return info(datos)
+       
+        
+    else:
+         bases.creteBase(
         host=data["host"],
         user=data["usuario"],
         contra=data["contrasenia"],
         pueto=data["puerto"], 
         base=data["base"],
                     )
-        
-    else:
-        datos=bases.getAllBases(
-        host=data["host"],
-        user=data["usuario"],
-        contra=data["contrasenia"],
-        pueto=data["puerto"], 
-                    )
-        return render_template('index.html', users = datos)
+          
       
     
     

@@ -14,7 +14,7 @@ def getAllBases(host,user,contra,pueto):
     cursor=db.cursor(dictionary=True)
     cursor.execute("show databases")
     
-    return cursor.fetchall(), print("exito")
+    return cursor.fetchall()
 
 
 def createbase(host,user,contra,pueto,base):
@@ -27,7 +27,7 @@ def createbase(host,user,contra,pueto,base):
     
 )
     cursor=db.cursor(dictionary=True)
-    cursor.execute('''create database  %s;''',(base))
+    cursor.execute('''CREATE DATABASE '''+(base))
     db.commit()
     cursor.close()
 
