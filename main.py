@@ -8,9 +8,9 @@ app = Flask(__name__)
 
 
 @app.get('/')
-def info(datos):
+def info():
      
-     return render_template('index.html',base = datos)
+     return render_template('index.html')
  
  
 @app.post('/guardar')
@@ -25,7 +25,8 @@ def createBase():
         contra=data["contrasenia"],
         pueto=data["puerto"] 
                     )
-        return info(datos)
+        print(datos)
+        return render_template('index.html',base = datos)
        
         
     else:
